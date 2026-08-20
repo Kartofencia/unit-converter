@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pint
+pydantic
+python-multipart
+
+python -m uvicorn app.backend.main:app --reload

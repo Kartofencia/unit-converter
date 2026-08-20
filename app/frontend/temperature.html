@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Unit Converter</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul class="nav-bars">
+                    <li><a href="length.html">Length</a></li>
+                    <li><a href="weight.html">Weight</a></li>
+                    <li><a href="temperature.html">Temperature</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="main-conv">
+            <form id="main-form">
+                <input 
+                    type="number"
+                    placeholder="Enter a number"
+                    required
+                    name="main-value"
+                    id="main-value">
+                <select required name="main-inp-unit">
+                    <option value="" selected disabled hidden>Input</option>
+                    <option value="c">C</option>
+                    <option value="f">F</option>
+                    <option value="k">K</option>
+                </select>
+                <select style="margin-left:0px;" required name="main-out-unit">
+                    <option value="" selected disabled hidden>Output</option>
+                    <option value="c">C</option>
+                    <option value="f">F</option>
+                    <option value="k">K</option>
+                </select>
+                <button id="main-conv-btn" type="submit">Convert</button>
+            </form>
+            <label>Result will appear here</label>
+        </section>
+
+        <section class="imp-conv">
+            <form id="imp-form">
+                <input
+                    type="text"
+                    placeholder="Enter multiple numbers with units (e.g. '12C 34F 56K')"
+                    required
+                    name="imp-value"
+                    id="imp-value">
+                <select style="margin-top:15px; text-align:center;" required name="imp-out-unit">
+                    <option value="" selected disabled hidden>Select Output Unit</option>
+                    <option value="c">C</option>
+                    <option value="f">F</option>
+                    <option value="k">K</option>
+                </select>
+                <button id="imp-conv-btn" type="submit">Convert</button>
+            </form>
+            <label>Result will appear here</label>
+        </section>
+        
+    </body>
+
+</html>
