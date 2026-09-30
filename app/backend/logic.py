@@ -12,7 +12,9 @@ ureg = pint.UnitRegistry()
 #convert to specific units function
 def count(value, from_unit, to_unit):
 
-    quantity = value * ureg(from_unit)
+    # Quantity(...) instead of `value * ureg(...)`: multiplication fails for
+    # temperature units (degC, degF), the constructor works for all units
+    quantity = ureg.Quantity(value, from_unit)
 
     converted = quantity.to(to_unit)
 
@@ -34,11 +36,12 @@ def ConvertMulti(measure: schemas.ConvertObjectMulti):
 
     result_value = 0
 
-    for measure_object in measure.measures:
-
-        quantity = measure_object.value * ureg(measure_object.unit)
-        converted = quantity.to(measure.to_unit)
-        result_value += converted.magnitude
+    try:
+        for measure_object in measure.measures:
+            converted = count(measure_object.value, measure_object.unit, measure.to_unit)
+            result_value += converted.magnitude
+    except (DimensionalityError, UndefinedUnitError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     return {
         "result": result_value,
